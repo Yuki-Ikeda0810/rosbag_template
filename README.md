@@ -1,23 +1,25 @@
-# rosbag Tutorial
-- 流れているROSトピックを保存する機能がrosbagです．  
-- ROSの動作はROSトピックを見れば大体はわかるので、例えばロボット実機を動かしながらrosbag記録をすることで、実機を何度も動かさなくても様々なアルゴリズムのテストをすることができます．  
+# rosbag Template
 
-- [rosbag Tutorial](#rosbag-tutorial)
-    - [rosbagの取得 : `rosbag record`](#rosbagの取得--rosbag-record)
-        - [`rosbag record -a`](#rosbag-record--a)
-        - [`rosbag record /topic1 /topic2`](#rosbag-record-topic1-topic2)
-        - [`rosbag record -e "/tf.*|/cmd_vel"`](#rosbag-record--e-tfcmdvel)
-        - [おすすめの使用方法](#おすすめの使用方法)
-    - [rosbagの確認 : `rosbag info`](#rosbagの確認--rosbag-info)
-    - [rosbagの再生 : `rosbag play`](#rosbagの再生--rosbag-play)
-        - [オプション](#オプション)
-    - [rqt_bag](#rqtbag)
-    - [csvへ出力](#csvへ出力)
-- [Reference](#reference)
+流れているROSトピックを保存する機能がrosbagです．  
+ROSの動作はROSトピックを見れば大体はわかるので，例えばロボット実機を動かしながらrosbag記録をすることで，実機を何度も動かさなくても様々なアルゴリズムのテストをすることができます．  
 
----
+## **目次**
 
-## rosbagの取得 : `rosbag record`
+1. [rosbagの取得 : rosbag record](#1-rosbagの取得--rosbag-record)
+    - [rosbag record -a](#rosbag-record--a)
+    - [rosbag record /topic1 /topic2](#rosbag-record-topic1-topic2)
+    - [rosbag record -e "/tf.*|/cmd_vel"](#rosbag-record--e-tfcmdvel)
+    - [おすすめの使用方法](#おすすめの使用方法)
+2. [rosbagの確認 : rosbag info](#2-rosbagの確認--rosbag-info)
+3. [rosbagの再生 : rosbag play](#3-rosbagの再生--rosbag-play)
+    - [オプション](#オプション)
+4. [rqt_bag](#4-rqtbag)
+5. [csvへ出力](#5-csvへ出力)
+6. [Reference](#6-reference)
+
+<br>
+
+## 1. rosbagの取得 : `rosbag record`
 - 実行中のROSのトピック通信でのメッセージをbagファイルとして保存するコマンドが`rosbag record`です．
 ```python
 $ cd ~/rosbag
@@ -98,11 +100,9 @@ rosbag record   /odom \
 
 </details>
 
-- [トップに戻る](#rosbag-tutorial)
+<br>
 
----
-
-## rosbagの確認 : `rosbag info`
+## 2. rosbagの確認 : `rosbag info`
 ```python
 $ rosbag info robot_bag.bag
 
@@ -141,11 +141,9 @@ topics:      /cmd_vel        222 msgs    : geometry_msgs/Twist
 
 </details>
 
-- [トップに戻る](#rosbag-tutorial)
+<br>
 
----
-
-## rosbagの再生 : `rosbag play`
+## 3. rosbagの再生 : `rosbag play`
 ```bash
 $ cd ~/rosbag
 $ rosbag play robot_bag.bag --rate=2.0 --clock --loop
@@ -178,11 +176,9 @@ $ rosbag play robot_bag.bag --rate=2.0 --clock --loop
 |`--rate-control-topic=RATE_CONTROL_TOPIC`|与えられたトピックを監視し、もし最後の公開が`RATE_CONTROL_TOPIC`以上前に公開された場合は、そのトピックが再び公開されるまで待ちます．トピックが再び公開されるまで待ち、再生を継続します．|
 |`--rate-control-max-delay=RATE_CONTROL_MAX_DELAY`|`RATE_CONTROL_MAX_DELAY`からの最大時間差 から一時停止するまでの最大時間差|
 
-- [トップに戻る](#rosbag-tutorial)
+<br>
 
----
-
-## rqt_bag
+## 4. rqt_bag
 - 以下のコマンドを実行すると以下のようなウィンドウが出てきます．
 - 縦にrosbagに入っているROSトピックが並んでいて、青い縦線はその時間にpublishされたことを示します．
 ```bash
@@ -199,11 +195,9 @@ $ rqt_bag robot_bag.bag
     <img src="img/rqt_bag_plot.png" width="640">
 </div>
 
-- [トップに戻る](#rosbag-tutorial)
+<br>
 
----
-
-## csvへ出力
+## 5. csvへ出力
 - rosbagで記録したトピックをcsvファイルに保存することが出来ます
 ```bash
 $ rostopic echo -b bagファイル.bag -p /トピック名 > csvファイル.csv
@@ -234,16 +228,12 @@ for ((i = 0; i < ${#rosbag_files[@]}; i++)) {
 
 </details>
 
-- [トップに戻る](#rosbag-tutorial)
-
----
-
-# Reference
+## 6. Reference
 - [ROS講座29 rosbagを使う](https://qiita.com/srs/items/f6e2c36996e34bcc4d73)
 - [ROSのbagファイルから特定トピックをcsv形式で出力する](https://yura2.hateblo.jp/entry/rosbag-to-csv)
 - [ROSのbagファイルのトピックを簡単にフィルタリングするGUIツールを作った](https://myenigma.hatenablog.com/entry/2016/02/09/223403)
 - [コマンドリファレンス（アルファベット順）](http://forestofazumino.web.fc2.com/ros/ros_command_reference.html)
 
-- [トップに戻る](#rosbag-tutorial)
-
 ---
+
+[トップに戻る](#rosbag-tutorial)
